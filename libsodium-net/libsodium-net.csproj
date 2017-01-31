@@ -75,15 +75,9 @@
     <Compile Include="PasswordHash.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dependencies\libsodium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Sodium.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Dependencies\libsodium-64.dll">
+    <EmbeddedResource Include="Dependencies\libsodium.dll" />
+    <EmbeddedResource Include="Dependencies\libsodium-64.dll" />
+    <Content Include="Sodium.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -95,10 +89,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup Condition="$(OS) == 'Windows_NT'">
+  <!--<PropertyGroup Condition="$(OS) == 'Windows_NT'">
     <PostBuildEvent>xcopy /y /r "$(TargetDir)Dependencies\*.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="$(OS) != 'Windows_NT'">
     <PostBuildEvent>cp -r $(TargetDir)Dependencies/*.dll .</PostBuildEvent>
-  </PropertyGroup>
+  </PropertyGroup>-->
 </Project>
