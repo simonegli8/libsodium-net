@@ -56,7 +56,7 @@ namespace Sodium {
 				.Where(name => name.EndsWith(".dll", StringComparison.OrdinalIgnoreCase));
 			foreach (var res in resources) {
 				try {
-					var dllFile = Path.Combine(dir, Regex.Replace(res, @".*(?=\.[^.]+\.dll", "", RegexOptions.IgnoreCase));
+					var dllFile = Path.Combine(dir, Regex.Replace(res, @".*\.(?=[^.]+\.dll)", "", RegexOptions.IgnoreCase));
 					using (var dest = new FileStream(dllFile, FileMode.Create, FileAccess.Write))
 					using (var src = assembly.GetManifestResourceStream(res)) {
 						src.CopyTo(dest);
@@ -72,7 +72,6 @@ namespace Sodium {
 		/// <remarks>This only needs to be done once, so this prevents repeated calls.</remarks>
 		public static void Init() {
 			if (!_isInit) {
-
 
 				SaveUnmanagedDlls();
 
